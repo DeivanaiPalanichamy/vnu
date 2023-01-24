@@ -47,6 +47,12 @@ class _FnbListState extends State<FnbList> {
 
   @override
   Widget build(BuildContext context) {
+     var route = ModalRoute.of(context);
+
+    if (route != null) {
+      print("hello deivanai");
+      print(route.settings.name);
+    }
     return BlocBuilder<FnbBloc, FnbState>(builder: (context, state) {
       if (state.status == FnbStatus.initial) {
         return const Center(

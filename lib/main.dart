@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:get/get.dart';
 import 'package:vnu/presentation/common/root_screen.dart';
 import 'package:vnu/presentation/home/view/home_page.dart';
+import 'package:vnu/presentation/whatson/view/whatson_page.dart';
 import 'package:vnu/simple_bloc_observer.dart';
 import 'package:vnu/theme/theme.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -13,6 +14,7 @@ import 'constant/applog.dart';
 import 'firebase_options.dart';
 import 'package:rxcommon/presentation/navigation/navigation.dart';
 import 'injection.dart' as di;
+import 'presentation/more/more_page.dart';
 
 void main() async {
   di.init();
@@ -33,8 +35,10 @@ void main() async {
     FirebaseMessaging.instance.setDeliveryMetricsExportToBigQuery(true);
     FirebaseMessaging.onBackgroundMessage(_messageHandler);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      // LocalNotification.showNotification(message);
       Applog.printlog(
           'onMessage: $message.data notification  $message.notification');
+      print(message);
     });
 
     BlocOverrides.runZoned(
@@ -68,15 +72,23 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<NavigationCubit>(
       create: (context) => NavigationCubit(),
-      child: MaterialApp(
-
-          //navigatorKey : Catcher.navigatorKey,
-          debugShowCheckedModeBanner: false,
-          theme: lightTheme,
-          home: SafeArea(
-            child: CustomWidgetExample()
-            // child: HomePage(),
-          )),
+      child: GetMaterialApp(
+        //navigatorKey : Catcher.navigatorKey,
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme,
+        initialRoute: '/RootScreen',
+        getPages: [
+          //Simple GetPage
+          GetPage(name: '/RootScreen', page: () => RootScreen()),
+          // GetPage with custom transitions and bindings
+          GetPage(name: '/homepagescreen', page: () => HomePage()),
+          // GetPage with custom transitions and bindings
+          GetPage(name: '/morepagescreen', page: () => MorePage()),
+          // GetPage with custom transitions and bindings
+          GetPage(name: '/whatsonpagescreen', page: () => WhatsonPage()),
+          // GetPage with custom transitions and bindings
+        ],
+      ),
     );
   }
 }

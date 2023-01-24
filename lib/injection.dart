@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:rxcommon/domain/usecases/items/get_facilities.dart';
@@ -7,6 +8,7 @@ import 'package:rxcommon/domain/usecases/items/get_more.dart';
 import 'package:rxcommon/lib.dart';
 
 final locator = GetIt.instance;
+ 
 
 void init() {
    locator.registerFactory(() => FacilitiesBloc(locator()));

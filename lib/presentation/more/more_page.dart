@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:rxcommon/presentation/presentation.dart';
 import 'package:vnu/constant/strings.dart';
 import 'package:vnu/injection.dart';
@@ -15,11 +16,12 @@ class MorePage extends StatefulWidget {
 }
 
 class _MorePageState extends State<MorePage> {
+  final controller1 = Get.put(Controllergetwhatson());
   late final ItemBloc itemBloc;
   @override
   Widget build(BuildContext context) {
      return  HomeScaffold(
-        context, Strings.titleMore, "", blocProvider(),1);
+        context,controller1.giftuser.value.titleViewMore, "", blocProvider(),1);
         }
 }
 Widget blocProvider() {
@@ -72,6 +74,7 @@ class _MoreListState extends State<MoreList> {
                 key: const Key('Item data'),
                 itemCount: state.posts.length,
                 itemBuilder: (context, index) {
+                
                 
                   return ItemMore(
                       title: state.posts[index].title,

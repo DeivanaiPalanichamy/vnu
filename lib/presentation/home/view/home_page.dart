@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:rxcommon/presentation/webview/cubit/webview_cubit.dart';
 import 'package:vnu/constant/asset_images.dart';
 import 'package:vnu/constant/constant.dart';
@@ -29,6 +30,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //print(Get.currentRoute);
+
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -58,23 +61,24 @@ class _HomePageState extends State<HomePage> {
             scrollDirection: Axis.vertical,
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height/2.8 ,//Constant.quickviewwidget,
-              //    height: Constant.quickviewwidget,
-                
-              /*    child: BlocProvider(
+                height: MediaQuery.of(context).size.height /
+                    2.8, //Constant.quickviewwidget,
+                //    height: Constant.quickviewwidget,
+
+                child: BlocProvider(
                     create: (_) => QuickViewBloc(locator()),
-                    child: QuickViewItem()),**/
+                    child: QuickViewItem()),
               ),
               MyRewardWidgetNR(),
               //   InterestStateWidget(),
 
-           /*   BlocProvider(
+              BlocProvider(
                   create: (_) => GiftShopBloc(locator()),
-                  child: const GiftshopList()),
+                  child: GiftshopList()),
 
               BlocProvider(
                   create: (_) => InterestBloc(locator()),
-                  child: const InterestList()),**/
+                  child: const InterestList()),
 
               // WebView1(),
               //  WebView(),

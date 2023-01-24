@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:rxcommon/lib.dart';
 import 'package:rxcommon/presentation/items/bloc/item_bloc.dart';
 import 'package:vnu/constant/constant.dart';
 
 import 'package:vnu/constant/custom_text_style.dart';
+import 'package:vnu/presentation/home/view/giftshopwidget.dart';
 
 import '../../common/widgets/item_interest_widget.dart';
 
@@ -18,6 +20,7 @@ class InterestList extends StatefulWidget {
 }
 
 class _InterestListState extends State<InterestList> {
+  final controller = Get.put(Controllerget());
   @override
   void initState() {
     super.initState();
@@ -79,6 +82,11 @@ class _InterestListState extends State<InterestList> {
                         ),
                       ),
                     ),
+                    /* Obx(
+                        () => Text('Name: ${controller.giftuser.value.Giftname}',
+                            textAlign: TextAlign.left,
+                            style: CustomTextStyle.getTitleStyle(Colors.white)),
+                      ),*/
                     SizedBox(
                         height: Constant.homeWidgetImage,
                         child: Align(
